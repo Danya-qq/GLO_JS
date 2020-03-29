@@ -1,12 +1,12 @@
 // 1)
 
-let money = 10e4;
-let income = 'freelance';
-let addExpenses = 'интернет, КУ, такси, развлечения';
-let deposit = true;
-let mission = 10e5;
-let period = 6;
-let budgetDay = money/30;
+let money = 10e4,
+income = 'freelance',
+addExpenses = 'интернет, КУ, такси, развлечения',
+deposit = true,
+mission = 10e5,
+period = 6,
+budgetDay = money/30;
 
 // 2)
 
@@ -16,19 +16,8 @@ console.log(typeof deposit);
 console.log(addExpenses.length);
 console.log('Период равен ' + period + ' месяцев.' + ' Цель заработать ' + mission + ' рублей');
 
-let arr = addExpenses.split(',');
-addExpenses = []; // пправильно ли понимаю, что надо переопределять переменную?
-for (let item of arr) {
-    addExpenses.push(item.toLowerCase());
-};
-console.log(addExpenses);
+console.log(addExpenses.toLowerCase().split(','));
 
 console.log(budgetDay);
 
-
-// for (let i = 0; i < arr.length; i++) {
-//     arrLow.push(arr[i].toLocaleLowerCase());
-//   };
-
-// console.log(arrLow);
 
