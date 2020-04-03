@@ -22,15 +22,21 @@ money = start();
 
 let getExpensesMonth = function(){
     let sum = 0;
+    let result;
     for (let i=0; i<2; i++){
         expenses[i] = prompt('Введите обязательную статью расходов', 'ку');
         
-        sum += +prompt('Во сколько это обойдется?');
-
-        while (!isNumber(sum) || sum === 0) {
-            sum = +prompt('Во сколько это обойдется?');
+        result = prompt('Во сколько это обойдется?');
+        console.log(sum);
+        
+        while (!isNumber(result) || result === 0) {
+            result = prompt('Во сколько это обойдется?');
         }
-
+            sum += +result;
+            console.log(result);
+            console.log(typeof result);
+            
+            
     };  
     console.log(expenses);
     
@@ -48,13 +54,11 @@ let budgetDay = accumulatedMonth/30;
 
 let getTargetMonth = function(){
     let target = mission/accumulatedMonth;
-    if (target >0) {
-        return console.log('Цель будет достигнута за: ' + Math.ceil(target) + ' месяцев');
-        
-    } else {
-        console.log('Цель не будет достигнута');
-    }
-
+        if (target >0) {
+            return console.log('Цель будет достигнута за: ' + Math.ceil(target) + ' месяцев');
+        } else {
+            console.log('Цель не будет достигнута');
+        };
 };
 
 
@@ -68,7 +72,7 @@ let getStatusIncome = function(){
     } else if (budgetDay<=600)  {
         return ('К сожалению, у вас уровень дохода ниже среднего');  
     } else if (budgetDay<=1200) {
-    creturn ('У вас средний уровень дохода');
+    return ('У вас средний уровень дохода');
     } else {
         return ('У вас высокий уровень дохода');  
     };
@@ -83,3 +87,5 @@ console.log('Возможные расходы ', addExpenses.split(','));
 console.log('Бюджет на день: ' + Math.floor(budgetDay));
 getTargetMonth();
 console.log(getStatusIncome());
+
+
