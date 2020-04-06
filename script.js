@@ -34,7 +34,6 @@ let appData = {
                         appData.expenses[value] = +prompt('Во сколько это обойдется?');
                     };
             };  
-            console.log(appData.expenses);
         },
         getExpensesMonth: function(){
             let sum = 0;
@@ -45,9 +44,8 @@ let appData = {
         },                             
         getBudget : function(){
             appData.budgetMonth = money - this.getExpensesMonth();
-            appData.budgetDay = appData.budgetMonth/30;
-            console.log(appData.budgetMonth);
-            console.log(appData.budgetDay);    
+            appData.budgetDay = Math.ceil(appData.budgetMonth/30);
+             
         },
         getTargetMonth: function(){
             let target = appData.mission/appData.budgetMonth;
