@@ -1,3 +1,4 @@
+
 let isNumber = function(n){
     return !isNaN(parseFloat(n)) && isFinite(n)
 };
@@ -117,7 +118,27 @@ let showProp = function() {
 appData.getInfoDeposit();
 
 let result = appData.addExpenses.map(function(elem) {
-    return elem[0].toLocaleUpperCase()+ elem.slice('1')
-
-})
+    return elem.trim()[0].toLocaleUpperCase()+ elem.trim().slice('1')
+});
 console.log(result.join(', '));
+
+console.log(calculateButton);
+console.log(plusAddButon1);
+console.log(plusAddButon2);
+console.log(checkboxButton);
+console.log(additionalIncomes);
+console.log(budgetDayValue);
+console.log(expensesMonthValue);
+console.log(additionalIncomeValue);
+console.log(additionalExpensesValue);
+console.log(incomePeriodValue);
+console.log(targetMonthValue);
+console.log(salaryAmount);
+console.log(incomeTitle);
+console.log(incomeAmount);
+console.log(expensesTitle);
+console.log(expensesAmount);
+console.log(additionalExpensesItem);
+console.log(targetAmount);
+console.log(periodSelectRange);
+
