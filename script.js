@@ -1,3 +1,25 @@
+'use strict';
+
+const calculateButton = document.getElementById('start'),
+ plusAddButon1 = document.getElementsByTagName('button')[0],
+ plusAddButon2 = document.getElementsByTagName('button')[1],
+ checkboxButton = document.getElementById('deposit-check'),
+ additionalIncomes = document.querySelectorAll('.additional_income-item'),
+ budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
+ expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0],
+ additionalIncomeValue = document.getElementsByClassName('additional_income-value')[0],
+ additionalExpensesValue = document.getElementsByClassName('additional_expenses-value')[0],
+ incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
+ targetMonthValue = document.getElementsByClassName('target_month-value')[0],
+ salaryAmount = document.querySelector('.salary-amount'),
+ incomeTitle = document.querySelector('.income-title'),
+ incomeAmount = document.querySelector('.income-amount'),
+ expensesTitle  = document.querySelector('.expenses-title'),
+ expensesAmount = document.querySelector('.expenses-amount'),
+ additionalExpensesItem= document.querySelector('.additional_expenses-item'),
+ targetAmount = document.querySelector('.target-amount'),
+ periodSelectRange = document.querySelector('.period-select');
+
 
 let isNumber = function(n){
     return !isNaN(parseFloat(n)) && isFinite(n)
