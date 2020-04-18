@@ -5,7 +5,7 @@ const start = document.getElementById('start'),
  btnPlus = document.getElementsByTagName('button'),
  incomePlus = btnPlus[0],
  expensesPlus = btnPlus[1],
- checkboxButton = document.getElementById('deposit-check'),
+ depositCheck = document.getElementById('deposit-check'),
  additionalIncomes = document.querySelectorAll('.additional_income-item'),
  budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
  budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
@@ -22,8 +22,10 @@ const start = document.getElementById('start'),
  periodSelect = document.querySelector('.period-select'),
  periodAmount = document.querySelector('.period-amount'),
  placeHolderName = document.querySelectorAll('input[placeholder = "Наименование"]'),
- placeHolderSum = document.querySelectorAll('input[placeholder = "Сумма"]'),
- inputTypeText = document.querySelectorAll('input[type="text"]');
+ placeHolderSum = document.querySelectorAll('input[placeholder = "Сумма"]');
+ let inputTypeText = document.querySelectorAll('input[type="text"]');
+ console.log(inputTypeText);
+ 
 
  let expensesItems = document.querySelectorAll('.expenses-items'),
   incomeItems = document.querySelectorAll('.income-items');
@@ -71,8 +73,7 @@ class AppData {
         this.showResult();
     };
 
-    showResult = function(){
-        const _this = this;
+    showResult = () => {
         budgetMonthValue.value = this.budgetMonth;
         budgetDayValue.value = this.budgetDay;
         expensesMonthValue.value = this.expensesMonth;
@@ -81,32 +82,52 @@ class AppData {
         targetMonthValue.value = Math.ceil(this.getTargetMonth());
         incomePeriodValue.value = this.calcPeriod();
         periodSelect.addEventListener('input', function(){
-        incomePeriodValue.value = this.value*_this.budgetMonth;
+        incomePeriodValue.value = this.value*this.budgetMonth;
         });
 
     }
    
     block(){
+        inputTypeText = document.querySelectorAll('input[type="text"]');
         inputTypeText.forEach((item) => {
-            if (item.hasAttribute('disabled')) {
+
+            if (item.hasAttribute('disabled') && item.value == '') {
                 return;
             } else {
                 item.toggleAttribute('disabled')
             };
             
         });
+            incomePlus.setAttribute('disabled', true);
+            expensesPlus.setAttribute('disabled', true);
+
             start.style.display = 'none';
             cancel.setAttribute('style', 'display: inline');
     }
    
     reset(){
-        let inputs = document.querySelectorAll('input');
+        let inputs = document.querySelectorAll('input');   
+        let incomes = document.querySelectorAll('.income-items');
+        let expenses = document.querySelectorAll('.expenses-items');
+        incomes.forEach(() => { 
+        if (incomes[0].nextElementSibling !== incomePlus) {
+            incomes[0].nextElementSibling.remove();
+        } else incomePlus.style = 'display: "block'
+    })
+    expenses.forEach(() => { 
+        if (expenses[0].nextElementSibling !== expensesPlus) {
+            expenses[0].nextElementSibling.remove();
+        } else expensesPlus.style = 'display: "block'
+    })
+        
         inputs.forEach((elem) => {
+        
             if (elem == periodSelect) {
                 elem.value = periodAmount.innerHTML = 1;
             } else {
             elem.value = '';
             elem.removeAttribute('disabled');
+
             };  
         });
 
@@ -120,6 +141,8 @@ class AppData {
         this.expensesMonth = 0;
         cancel.style.display = 'none';
         start.style.display = 'block';
+        incomePlus.removeAttribute('disabled');
+        expensesPlus.removeAttribute('disabled');
     }
    
     getNewBlocks(){
@@ -232,6 +255,15 @@ class AppData {
         return this.budgetMonth*periodSelect.value;
     }
     
+    depositHandler(){
+        if (depositCheck.checked){
+            console.log('ckeck');
+        } else {
+            console.log('uncheck');
+        };
+        
+    }
+    
     eventsListeners(){
         start.addEventListener('click', appData.start.bind(appData)); 
         cancel.addEventListener('click', appData.reset.bind(appData));
@@ -240,6 +272,7 @@ class AppData {
         periodSelect.addEventListener('input', () => {
             periodAmount.innerHTML = event.target.value;
         }); 
+        depositCheck.addEventListener('change', this.depositHandler.bind(this))
     }
 
     holdInputs(){
