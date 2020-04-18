@@ -6,6 +6,9 @@ const start = document.getElementById('start'),
  incomePlus = btnPlus[0],
  expensesPlus = btnPlus[1],
  depositCheck = document.getElementById('deposit-check'),
+ depositBank = document.querySelector('.deposit-bank'),
+ depositAmount = document.querySelector('.deposit-amount'),
+ depositPercent = document.querySelector('.deposit-percent'),
  additionalIncomes = document.querySelectorAll('.additional_income-item'),
  budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
  budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
@@ -23,11 +26,8 @@ const start = document.getElementById('start'),
  periodAmount = document.querySelector('.period-amount'),
  placeHolderName = document.querySelectorAll('input[placeholder = "Наименование"]'),
  placeHolderSum = document.querySelectorAll('input[placeholder = "Сумма"]');
- let inputTypeText = document.querySelectorAll('input[type="text"]');
- console.log(inputTypeText);
- 
-
- let expensesItems = document.querySelectorAll('.expenses-items'),
+ let inputTypeText = document.querySelectorAll('input[type="text"]'),
+  expensesItems = document.querySelectorAll('.expenses-items'),
   incomeItems = document.querySelectorAll('.income-items');
  
 const isNumber = function(n){
@@ -67,6 +67,7 @@ class AppData {
         this.getExpInc();
         this.getAddData();
         this.getExpensesMonth();
+        this.getInfoDeposit();
         this.getBudget();
         this.block();
 
@@ -136,6 +137,7 @@ class AppData {
         this.budgetMonth = 0;
         this.addExpenses = [];
         this.addIncome = [];
+        this.deposit = false;
         this.income = {};
         this.expenses = {};
         this.expensesMonth = 0;
@@ -240,7 +242,9 @@ class AppData {
    
     getInfoDeposit(){
         if (this.deposit){
-            this.percentDeposit = prompt('Какой годовой процент?', 10);
+            this.percentDeposit = depositPercent.value;
+            thid.moneyDeposit = depositAmount.value;
+            prompt('Какой годовой процент?', 10);
                 while(!isNumber(this.percentDeposit) || this.percentDeposit === 0){
                     this.percentDeposit = prompt('Какой годовой процент?', '10');
                 };
@@ -251,15 +255,28 @@ class AppData {
         };
     }
     
-    calcPeriod = function(){
+    calcPeriod(){
         return this.budgetMonth*periodSelect.value;
+    }
+
+    changePercent(){
+        const selectIndex = this;
     }
     
     depositHandler(){
         if (depositCheck.checked){
-            console.log('ckeck');
+            depositBank.style.display = 'inline-block';
+            depositAmount.style.display = 'inline-block';
+            this.deposit = true;
+            depositBank.addEventListener('change', this.changePercent)
         } else {
-            console.log('uncheck');
+            depositBank.style.display = 'none';
+            depositAmount.style.display = 'none';
+            depositBank.value = '';
+            depositAmount.value = '';
+            this.deposit = false;
+            depositBank.removeEventListener('change', this.changePersent)
+
         };
         
     }
