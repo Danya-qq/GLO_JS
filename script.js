@@ -1,6 +1,6 @@
 'use strict';
 
-let start = document.getElementById('start'),
+const start = document.getElementById('start'),
  cancel = document.getElementById('cancel'),
  btnPlus = document.getElementsByTagName('button'),
  incomePlus = btnPlus[0],
@@ -17,15 +17,16 @@ let start = document.getElementById('start'),
  salaryAmount = document.querySelector('.salary-amount'),
  incomeTitle = document.querySelector('.income-title'),
  expensesTitle  = document.querySelector('.expenses-title'),
- expensesItems = document.querySelectorAll('.expenses-items'),
  additionalExpensesItem= document.querySelectorAll('.additional_expenses-item'),
  targetAmount = document.querySelector('.target-amount'),
  periodSelect = document.querySelector('.period-select'),
- incomeItems = document.querySelectorAll('.income-items'),
  periodAmount = document.querySelector('.period-amount'),
  placeHolderName = document.querySelectorAll('input[placeholder = "Наименование"]'),
  placeHolderSum = document.querySelectorAll('input[placeholder = "Сумма"]'),
  inputTypeText = document.querySelectorAll('input[type="text"]');
+
+ let expensesItems = document.querySelectorAll('.expenses-items'),
+  incomeItems = document.querySelectorAll('.income-items'),
  
 const isNumber = function(n){
     return !isNaN(parseFloat(n)) && isFinite(n)
