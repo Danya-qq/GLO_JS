@@ -26,7 +26,7 @@ const start = document.getElementById('start'),
  inputTypeText = document.querySelectorAll('input[type="text"]');
 
  let expensesItems = document.querySelectorAll('.expenses-items'),
-  incomeItems = document.querySelectorAll('.income-items'),
+  incomeItems = document.querySelectorAll('.income-items');
  
 const isNumber = function(n){
     return !isNaN(parseFloat(n)) && isFinite(n)
