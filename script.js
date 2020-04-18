@@ -150,6 +150,8 @@ class AppData {
     getNewBlocks(){
             let item = this.previousElementSibling;
             let cloneElem = item.cloneNode(true);
+            cloneElem.children[0].value = '';
+            cloneElem.children[1].value = ''; 
             item.after(cloneElem); 
             if (item.parentElement.childElementCount === 5) 
                 this.style.display = 'none'     
@@ -157,6 +159,8 @@ class AppData {
         }  
 
     getExpInc(){
+        expensesItems = document.querySelectorAll('.expenses-items'),
+        incomeItems = document.querySelectorAll('.income-items');
         const count = (item) => {
             const startStr = item.className.split('-')[0];
             const itemTitle = item.querySelector(`.${startStr}-title`).value;
@@ -217,7 +221,8 @@ class AppData {
     }                            
     
     getBudget (){
-        this.budgetMonth = this.budget + this.incomeMonth - this.getExpensesMonth();
+        const monthDeposit = this.moneyDeposit*(this.percentDeposit/100);
+        this.budgetMonth = this.budget + this.incomeMonth - this.getExpensesMonth() + monthDeposit;
         this.budgetDay = Math.ceil(this.budgetMonth/30);
         
     }
@@ -243,15 +248,7 @@ class AppData {
     getInfoDeposit(){
         if (this.deposit){
             this.percentDeposit = depositPercent.value;
-            thid.moneyDeposit = depositAmount.value;
-            prompt('Какой годовой процент?', 10);
-                while(!isNumber(this.percentDeposit) || this.percentDeposit === 0){
-                    this.percentDeposit = prompt('Какой годовой процент?', '10');
-                };
-            this.moneyDeposit = prompt('Какая сумма заложена?', 10000);
-                while(!isNumber(this.moneyDeposit) || this.moneyDeposit === 0){
-                    this.moneyDeposit = prompt('Какая сумма заложена?', 10000);
-                };
+            this.moneyDeposit = depositAmount.value;
         };
     }
     
@@ -260,7 +257,13 @@ class AppData {
     }
 
     changePercent(){
-        const selectIndex = this;
+        const valueSelect = this.value;
+        if (valueSelect === 'other') {
+            // ДЗ
+        } else {
+            depositPercent.value = valueSelect;
+        }
+        
     }
     
     depositHandler(){
