@@ -5,8 +5,8 @@ const start = document.getElementById('start'),
  btnPlus = document.getElementsByTagName('button'),
  incomePlus = btnPlus[0],
  expensesPlus = btnPlus[1],
- depositCheck = document.getElementById('deposit-check'),
- depositBank = document.querySelector('.deposit-bank'),
+ depositCheck = document.getElementById('deposit-check');
+  let depositBank = document.querySelector('.deposit-bank'),
  depositAmount = document.querySelector('.deposit-amount'),
  depositPercent = document.querySelector('.deposit-percent'),
  additionalIncomes = document.querySelectorAll('.additional_income-item'),
@@ -33,6 +33,10 @@ const start = document.getElementById('start'),
 const isNumber = function(n){
     return !isNaN(parseFloat(n)) && isFinite(n)
 };
+
+console.log(depositPercent);
+
+
 
 
 class AppData {
@@ -145,6 +149,13 @@ class AppData {
         start.style.display = 'block';
         incomePlus.removeAttribute('disabled');
         expensesPlus.removeAttribute('disabled');
+        depositBank.style.display = 'none';
+        depositAmount.style.display = 'none';
+        depositPercent.style.display = 'none';
+        depositBank.value = '';
+        depositAmount.value = '';
+        this.deposit = false;
+        depositCheck.checked = false;
     }
    
     getNewBlocks(){
@@ -244,7 +255,7 @@ class AppData {
             return ('У вас высокий уровень дохода');  
         };
     }
-   
+  
     getInfoDeposit(){
         if (this.deposit){
             this.percentDeposit = depositPercent.value;
@@ -259,11 +270,20 @@ class AppData {
     changePercent(){
         const valueSelect = this.value;
         if (valueSelect === 'other') {
-            // ДЗ
+            depositPercent.style = 'display: inline-block';
+            depositPercent.addEventListener('blur', ()=>{
+                if (depositPercent.value >= 100 || depositPercent.value <= 1 ||!isNumber(depositPercent.value)){
+                alert('Введите корректное значение в поле проценты');
+                start.setAttribute('disabled', true);
+                } 
+                else  {
+                    start.toggleAttribute('disabled');
+                }
+            });
+            
         } else {
             depositPercent.value = valueSelect;
-        }
-        
+        }          
     }
     
     depositHandler(){
