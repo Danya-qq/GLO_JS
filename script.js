@@ -272,7 +272,7 @@ class AppData {
         if (valueSelect === 'other') {
             depositPercent.style = 'display: inline-block';
             depositPercent.addEventListener('blur', ()=>{
-                if (depositPercent.value >= 100 || depositPercent.value <= 1 ||!isNumber(depositPercent.value)){
+                if (depositPercent.value >= 100 || depositPercent.value < 1 ||!isNumber(depositPercent.value)){
                 alert('Введите корректное значение в поле проценты');
                 start.setAttribute('disabled', true);
                 } 
@@ -295,6 +295,8 @@ class AppData {
         } else {
             depositBank.style.display = 'none';
             depositAmount.style.display = 'none';
+            depositPercent.style.display = 'none';
+
             depositBank.value = '';
             depositAmount.value = '';
             this.deposit = false;
