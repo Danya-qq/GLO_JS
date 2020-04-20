@@ -140,6 +140,9 @@ class AppData {
 
         console.log(this); 
         this.incomeMonth = 0;
+        this.percentDeposit = 0;
+        this.moneyDeposit = 0;
+        this.budget = 0;
         this.budgetMonth = 0;
         this.addExpenses = [];
         this.addIncome = [];
@@ -157,7 +160,6 @@ class AppData {
         depositBank.value = '';
         depositPercent.value = '';
         depositAmount.value = '';
-        this.deposit = false;
         depositCheck.checked = false;
         depositBank.toggleAttribute('disabled');
         depositCheck.removeAttribute('disabled');
