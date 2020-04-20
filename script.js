@@ -155,6 +155,7 @@ class AppData {
         depositAmount.style.display = 'none';
         depositPercent.style.display = 'none';
         depositBank.value = '';
+        depositPercent.value = '';
         depositAmount.value = '';
         this.deposit = false;
         depositCheck.checked = false;
@@ -275,6 +276,7 @@ class AppData {
         const valueSelect = this.value;
         if (valueSelect === 'other') {
             depositPercent.style = 'display: inline-block';
+            depositPercent.value = '';
             depositPercent.addEventListener('blur', ()=>{
                 if (depositPercent.value >= 100 || depositPercent.value < 1 ||!isNumber(depositPercent.value)){
                 alert('Введите корректное значение в поле проценты');
