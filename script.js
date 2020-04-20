@@ -109,6 +109,7 @@ class AppData {
             start.style.display = 'none';
             cancel.setAttribute('style', 'display: inline');
             depositBank.toggleAttribute('disabled');
+            depositCheck.toggleAttribute('disabled');
     }
    
     reset(){
@@ -158,6 +159,7 @@ class AppData {
         this.deposit = false;
         depositCheck.checked = false;
         depositBank.toggleAttribute('disabled');
+        depositCheck.removeAttribute('disabled');
     }
    
     getNewBlocks(){
