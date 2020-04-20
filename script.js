@@ -108,6 +108,7 @@ class AppData {
 
             start.style.display = 'none';
             cancel.setAttribute('style', 'display: inline');
+            depositBank.toggleAttribute('disabled');
     }
    
     reset(){
@@ -156,6 +157,7 @@ class AppData {
         depositAmount.value = '';
         this.deposit = false;
         depositCheck.checked = false;
+        depositBank.toggleAttribute('disabled');
     }
    
     getNewBlocks(){
@@ -277,12 +279,15 @@ class AppData {
                 start.setAttribute('disabled', true);
                 } 
                 else  {
-                    start.toggleAttribute('disabled');
+                    start.removeAttribute('disabled');
                 }
             });
             
         } else {
             depositPercent.value = valueSelect;
+            depositPercent.style.display = 'none';
+            
+            
         }          
     }
     
